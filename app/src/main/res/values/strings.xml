@@ -1,0 +1,15 @@
+<resources>
+    <string name="app_name">Recipes Assistant</string>
+
+    <string name="title_activity_recipe_detail">Recipe Detail</string>
+    <string name="ingredients">Ingredients</string>
+    <string name="directions">Directions</string>
+    <string name="view_recipe">View Recipe</string>
+    <string name="title_activity_settings">Settings</string>
+    <string name="app_purpose">The purpose of this app is only studying about android app actions and slices. The code for this project is in Github and can be accessed by anyone interested.\n\nWe are open to suggestions and feedbacks. Please send an email to webanadev@gmail.com.</string>
+    <string name="app_credits">Recipe images was from Flickr\nIcons from FlatIcon\nRecipe dataset from Github</string>
+    <string name="see_privacy_policy">See Privacy Policy</string>
+    <string name="loading_recipe">Loading recipe …</string>
+    <string name="error_recipe_not_found">Could not find recipe.</string>
+    <string name="open_app">Open app</string>
+</resources>

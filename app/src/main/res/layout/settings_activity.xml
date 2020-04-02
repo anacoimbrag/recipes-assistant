@@ -1,0 +1,33 @@
+<androidx.appcompat.widget.LinearLayoutCompat xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    android:padding="20dp">
+
+    <com.google.android.material.textview.MaterialTextView
+        style="?textAppearanceBody1"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/app_purpose" />
+
+    <com.google.android.material.textview.MaterialTextView
+        android:id="@+id/txtCredits"
+        style="?textAppearanceBody2"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="20dp"
+        android:clickable="true"
+        android:focusable="true"
+        android:lineSpacingExtra="8sp"
+        android:text="@string/app_credits" />
+
+    <com.google.android.material.button.MaterialButton
+        android:id="@+id/showPrivacyPolice"
+        style="?materialButtonOutlinedStyle"
+        android:layout_width="wrap_content"
+        android:layout_height="60dp"
+        android:layout_gravity="center_horizontal"
+        android:layout_marginTop="30dp"
+        android:text="@string/see_privacy_policy" />
+
+</androidx.appcompat.widget.LinearLayoutCompat>

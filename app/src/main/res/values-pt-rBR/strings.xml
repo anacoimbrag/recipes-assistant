@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="app_name">Assistente de Receitas</string>
+    <string name="title_activity_recipe_detail">Detalhe da Receita</string>
+    <string name="ingredients">Ingredientes</string>
+    <string name="directions">Modo de preparo</string>
+    <string name="view_recipe">Ver Receita</string>
+    <string name="title_activity_settings">Configurações</string>
+    <string name="app_purpose">O propósito deste app é puramente para estudo sobre Android Actions e Slices. O código do projeto está disponível no Github e pode ser acessado por quem tiver interesse.\n\nEstamos abertos a sugestões e feedbacks. Por favor, envie um email para webanadev@gmail.com.</string>
+    <string name="app_credits">Imagens das receitas do Flickr\nÍcones do FlatIcon\nBanco de receitas do GitHub.</string>
+    <string name="see_privacy_policy">Ver política de privacidade</string>
+    <string name="loading_recipe">Carregando receita …</string>
+    <string name="error_recipe_not_found">Não foi possível encontrar a receita</string>
+    <string name="open_app">Abrir o app</string>
+</resources>

@@ -1,0 +1,19 @@
+<?xml version ="1.0" encoding ="utf-8"?><!--  Learn More about how to use App Actions: https://developer.android.com/guide/actions/index.html -->
+<actions>
+    <action intentName="actions.intent.GET_THING">
+        <fulfillment
+            fulfillmentMode="actions.fulfillment.SLICE"
+            urlTemplate="content://com.anacoimbra.android.recipes/detail{?recipe}">
+            <parameter-mapping
+                intentParameter="thing.name"
+                required="true"
+                urlParameter="recipe" />
+        </fulfillment>
+
+        <fulfillment urlTemplate="recipes://detail{?recipe}">
+            <parameter-mapping
+                intentParameter="thing.name"
+                urlParameter="recipe" />
+        </fulfillment>
+    </action>
+</actions>
