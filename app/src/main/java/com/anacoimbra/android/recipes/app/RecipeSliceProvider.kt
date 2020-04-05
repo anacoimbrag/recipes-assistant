@@ -26,20 +26,10 @@ class RecipeSliceProvider : SliceProvider() {
     override fun onCreateSliceProvider() = true
 
     override fun onMapIntentToUri(intent: Intent?): Uri {
-        var uriBuilder: Uri.Builder = Uri.Builder().scheme(ContentResolver.SCHEME_CONTENT)
-        if (intent == null) return uriBuilder.build()
-        val data = intent.data
-        val dataPath = data?.path
-        if (data != null && dataPath != null) uriBuilder = uriBuilder.path(dataPath)
-        context ?: return uriBuilder.build()
-        uriBuilder = uriBuilder.authority(context!!.packageName)
-
-        return uriBuilder.build()
+        val uriBuilder: Uri.Builder = Uri.Builder().scheme(ContentResolver.SCHEME_CONTENT)
+        return intent?.data ?: uriBuilder.build()
     }
 
-    /**
-     * Construct the Slice and bind data if available.
-     */
     override fun onBindSlice(sliceUri: Uri): Slice? {
         val context = context ?: return null
         val id = sliceUri.getQueryParameter(UriManager.RECIPE_PARAM)
@@ -56,9 +46,6 @@ class RecipeSliceProvider : SliceProvider() {
         }
     }
 
-    /**
-     * Slice has been pinned to external process. Subscribe to data source if necessary.
-     */
     override fun onSlicePinned(sliceUri: Uri?) {
         sliceUri ?: return
         val id = sliceUri.getQueryParameter(UriManager.RECIPE_PARAM)
@@ -94,7 +81,7 @@ class RecipeSliceProvider : SliceProvider() {
                     setTitle(recipe.name.orEmpty(), false)
                     subtitle = recipe.baseIngredients?.joinToString().orEmpty()
                     summary = recipe.baseIngredients?.joinToString().orEmpty()
-                    primaryAction = createDetailAction(recipe.id)
+                    primaryAction = createDetailAction(recipe)
                 }
                 gridRow {
                     cell {
@@ -115,21 +102,15 @@ class RecipeSliceProvider : SliceProvider() {
             } else createErrorSlice(context, sliceUri)
 
     private fun createErrorSlice(context: Context, sliceUri: Uri) =
-        ListBuilder(context, sliceUri, ListBuilder.INFINITY)
-            .addRow(
-                ListBuilder.RowBuilder()
-                    .setTitle(context.getString(R.string.error_recipe_not_found))
-                    .setPrimaryAction(createAppAction())
-            )
-            .build()
+        list(context, sliceUri, ListBuilder.INFINITY) {
+            header {
+                title = context.getString(R.string.error_recipe_not_found)
+                primaryAction = createAppAction()
+            }
+        }
 
-    private fun createDetailAction(id: String?) =
-        createAction(
-            RecipeDetailActivity.intent(
-                context,
-                (getResource(id) as? Resource.Success<Recipe>)?.data
-            )
-        )
+    private fun createDetailAction(recipe: Recipe?) =
+        createAction(RecipeDetailActivity.intent(context, recipe))
 
     private fun createAppAction() = createAction(Intent(context, MainActivity::class.java))
 
