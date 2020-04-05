@@ -12,4 +12,49 @@
     <string name="loading_recipe">Carregando receita …</string>
     <string name="error_recipe_not_found">Não foi possível encontrar a receita</string>
     <string name="open_app">Abrir o app</string>
+    <string name="nutella_pie">torta de nutella</string>
+    <string name="frozen_yogurt">frozen iogurte de morango</string>
+    <string name="unleavened_cheese_bread">pão de queijo sem fermento</string>
+    <string name="cheese_bread">pão de queijo</string>
+    <string name="mac_and_cheese">massa com queijo</string>
+    <string name="smoothie">smoothie</string>
+    <string name="homemade_ice_cream">sorvete caseiro</string>
+    <string name="spoon_brigadeiro">brigadeiro de colher</string>
+
+    <string-array name="nutella_pie">
+        <item>Torta</item>
+        <item>Nutella</item>
+        <item>Tortas</item>
+        <item>Torta de avelã</item>
+        <item>avelã</item>
+        <item>Creme de avelã</item>
+    </string-array>
+    <string-array name="frozen_yogurt">
+        <item>frozen iogurte</item>
+        <item>iogurte</item>
+        <item>iogurte gelado</item>
+        <item>iogurte de morango</item>
+    </string-array>
+    <string-array name="unleavened_cheese_bread">
+        <item>sem fermento</item>
+    </string-array>
+    <string-array name="cheese_bread">
+        <item>polvilho queijo</item>
+        <item>biscoito de queijo</item>
+    </string-array>
+    <string-array name="mac_and_cheese">
+        <item>mac\'n cheese</item>
+        <item>massa</item>
+        <item>macarrão com queijo</item>
+    </string-array>
+    <string-array name="smoothie">
+        <item>smoothie de abacate</item>
+        <item>batida</item>
+    </string-array>
+    <string-array name="homemade_ice_cream">
+        <item>sorvete</item>
+    </string-array>
+    <string-array name="spoon_brigadeiro">
+        <item>brigadeiro</item>
+    </string-array>
 </resources>

@@ -12,4 +12,56 @@
     <string name="loading_recipe">Loading recipe …</string>
     <string name="error_recipe_not_found">Could not find recipe.</string>
     <string name="open_app">Open app</string>
+    <string name="nutella_pie">nutella pie</string>
+    <string name="frozen_yogurt">frozen strawberry yogurt</string>
+    <string name="unleavened_cheese_bread">unleavened cheese bread</string>
+    <string name="cheese_bread">cheese bread</string>
+    <string name="mac_and_cheese">mac and cheese</string>
+    <string name="smoothie">smoothie</string>
+    <string name="homemade_ice_cream">homemade ice cream</string>
+    <string name="spoon_brigadeiro">spoon brigadeiro</string>
+
+    <string-array name="nutella_pie">
+        <item>pie</item>
+        <item>nutella</item>
+        <item>pies</item>
+        <item>hazelnut pie</item>
+        <item>hazelnut</item>
+        <item>hazelnut cream</item>
+    </string-array>
+
+    <string-array name="frozen_yogurt">
+        <item>frozen yogurt</item>
+        <item>yogurt</item>
+        <item>frozen</item>
+        <item>strawberry yogurt</item>
+    </string-array>
+
+    <string-array name="unleavened_cheese_bread">
+        <item>unleavened</item>
+    </string-array>
+
+    <string-array name="cheese_bread">
+        <item>powder cheese</item>
+        <item>cheese rolls</item>
+    </string-array>
+
+    <string-array name="mac_and_cheese">
+        <item>mac\'n cheese</item>
+        <item>macaroni</item>
+        <item>macaroni and cheese</item>
+    </string-array>
+
+    <string-array name="smoothie">
+        <item>avocado smoothie</item>
+        <item>avocado</item>
+    </string-array>
+
+    <string-array name="homemade_ice_cream">
+        <item>ice cream</item>
+    </string-array>
+
+    <string-array name="spoon_brigadeiro">
+        <item>brigadeiro</item>
+    </string-array>
 </resources>

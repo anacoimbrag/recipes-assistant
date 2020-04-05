@@ -22,30 +22,29 @@ class SettingsActivity : AppCompatActivity() {
         setContentView(R.layout.settings_activity)
 
         val creditsText = SpannableString(getString(R.string.app_credits))
-        creditsText.setSpan(
-            LinkSpan("https://gist.github.com/lucasheriques/ed2214dba65b8903a5b62566f4439005"),
-            creditsText.indexOf("Github", ignoreCase = true),
-            creditsText.indexOf("Github", ignoreCase = true) + "Github".length,
-            SpannableString.SPAN_INCLUSIVE_EXCLUSIVE
+        setupClickableSpan(
+            creditsText,
+            "https://gist.github.com/lucasheriques/ed2214dba65b8903a5b62566f4439005",
+            "Github"
         )
-        creditsText.setSpan(
-            LinkSpan("https://www.flickr.com/"),
-            creditsText.indexOf("Flickr", ignoreCase = true),
-            creditsText.indexOf("Flickr", ignoreCase = true) + "Flickr".length,
-            SpannableString.SPAN_INCLUSIVE_EXCLUSIVE
-        )
-        creditsText.setSpan(
-            LinkSpan("https://flaticon.com"),
-            creditsText.indexOf("FlatIcon", ignoreCase = true),
-            creditsText.indexOf("FlatIcon", ignoreCase = true) + "FlatIcon".length,
-            SpannableString.SPAN_INCLUSIVE_EXCLUSIVE
-        )
+        setupClickableSpan(creditsText, "https://www.flickr.com/", "Flickr")
+        setupClickableSpan(creditsText, "https://flaticon.com", "FlatIcon")
         txtCredits.text = creditsText
         txtCredits.movementMethod = LinkMovementMethod.getInstance()
 
         showPrivacyPolice.setOnClickListener {
             startActivity(Intent(Intent.ACTION_VIEW, Uri.parse(privacyPolicyUrl)))
         }
+    }
+
+    private fun setupClickableSpan(spannable: SpannableString, link: String, text: String) {
+        val start = spannable.indexOf(text, ignoreCase = true)
+        spannable.setSpan(
+            LinkSpan(link),
+            start,
+            start + text.length,
+            SpannableString.SPAN_INCLUSIVE_EXCLUSIVE
+        )
     }
 
     inner class LinkSpan(private val link: String) : ClickableSpan() {

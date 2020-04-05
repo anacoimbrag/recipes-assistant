@@ -1,19 +1,58 @@
-<?xml version ="1.0" encoding ="utf-8"?><!--  Learn More about how to use App Actions: https://developer.android.com/guide/actions/index.html -->
+<?xml version ="1.0" encoding ="utf-8"?>
 <actions>
-    <action intentName="actions.intent.GET_THING">
+    <action intentName="actions.intent.OPEN_APP_FEATURE">
         <fulfillment
             fulfillmentMode="actions.fulfillment.SLICE"
             urlTemplate="content://com.anacoimbra.android.recipes/detail{?recipe}">
             <parameter-mapping
-                intentParameter="thing.name"
+                intentParameter="feature"
                 required="true"
                 urlParameter="recipe" />
         </fulfillment>
 
         <fulfillment urlTemplate="recipes://detail{?recipe}">
             <parameter-mapping
-                intentParameter="thing.name"
+                intentParameter="feature"
                 urlParameter="recipe" />
         </fulfillment>
+
+        <parameter name="feature">
+            <entity-set-reference entitySetId="RecipeEntitySet" />
+        </parameter>
     </action>
+
+    <entity-set entitySetId="RecipeEntitySet">
+        <entity
+            name="@string/nutella_pie"
+            alternateName="@array/nutella_pie"
+            identifier="1BwZaCFmhpiMwlDYJCbN" />
+        <entity
+            name="@string/frozen_yogurt"
+            alternateName="@array/frozen_yogurt"
+            identifier="2gbkANgwMJYMUnYgoRHn" />
+        <entity
+            name="@string/unleavened_cheese_bread"
+            alternateName="@array/unleavened_cheese_bread"
+            identifier="30JBY62vbE3sKgImu4K3" />
+        <entity
+            name="@string/cheese_bread"
+            alternateName="@array/cheese_bread"
+            identifier="6aRoFUbVuMp3EP48uO8M" />
+        <entity
+            name="@string/mac_and_cheese"
+            alternateName="@array/mac_and_cheese"
+            identifier="7BnVOHJMxqHzUNxnYY5D" />
+        <entity
+            name="@string/smoothie"
+            alternateName="@array/smoothie"
+            identifier="8nuFGfVcWs47iI9968NV" />
+        <entity
+            name="@string/homemade_ice_cream"
+            alternateName="@array/homemade_ice_cream"
+            identifier="BUxjnSRPVBljNkrELEiN" />
+        <entity
+            name="@string/spoon_brigadeiro"
+            alternateName="@array/spoon_brigadeiro"
+            identifier="DsmBZwZE3exD8DpEZpEy" />
+    </entity-set>
 </actions>

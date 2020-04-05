@@ -1,27 +1,29 @@
 package com.anacoimbra.android.recipes.helpers
 
-import com.google.firebase.firestore.FirebaseFirestore
-import com.google.firebase.firestore.FirebaseFirestoreException
-import com.google.firebase.firestore.QuerySnapshot
+import android.util.Log
+import com.google.android.gms.tasks.Task
+import com.google.firebase.firestore.*
 
 object FirestoreManager {
 
     private const val COLLECTION_NAME = "recipes"
-    private const val NAME_PARAM = "name"
 
-    fun getRecipeByName(
-        recipe: String?,
-        listener: (query: QuerySnapshot?, exception: FirebaseFirestoreException?) -> Unit
-    ) {
+    private val db by lazy {
         FirebaseFirestore.getInstance()
-            .collection(COLLECTION_NAME)
-            .whereEqualTo(NAME_PARAM, recipe)
-            .addSnapshotListener(listener)
+    }
+
+    fun getRecipeById(
+        recipe: String?,
+        listener: (query: Task<DocumentSnapshot>) -> Unit
+    ) {
+        db.collection(COLLECTION_NAME)
+            .document(recipe.orEmpty())
+            .get()
+            .addOnCompleteListener(listener)
     }
 
     fun getAllRecipes(listener: (query: QuerySnapshot?, exception: FirebaseFirestoreException?) -> Unit) {
-        FirebaseFirestore.getInstance()
-            .collection(COLLECTION_NAME)
-            .addSnapshotListener(listener)
+        db.collection(COLLECTION_NAME)
+            .addSnapshotListener(MetadataChanges.INCLUDE, listener)
     }
 }

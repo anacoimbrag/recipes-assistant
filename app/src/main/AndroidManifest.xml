@@ -27,6 +27,15 @@
                     android:pathPattern="/detail"
                     android:scheme="content" />
             </intent-filter>
+            <intent-filter>
+                <action android:name="android.intent.action.VIEW" />
+
+                <category android:name="android.app.slice.category.SLICE" />
+
+                <data
+                    android:host="detail"
+                    android:scheme="recipes" />
+            </intent-filter>
         </provider>
 
         <meta-data

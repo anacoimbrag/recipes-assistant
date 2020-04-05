@@ -4,7 +4,7 @@ import android.content.Context
 import android.content.Intent
 import android.os.Bundle
 import androidx.appcompat.app.AppCompatActivity
-import com.anacoimbra.android.recipes.*
+import com.anacoimbra.android.recipes.R
 import com.anacoimbra.android.recipes.helpers.FirestoreManager
 import com.anacoimbra.android.recipes.helpers.UriManager
 import com.anacoimbra.android.recipes.model.Recipe
@@ -29,15 +29,15 @@ class RecipeDetailActivity : AppCompatActivity() {
     }
 
     private fun handleIntent(intent: Intent?) {
-        val name = intent?.getStringExtra(UriManager.RECIPE_PARAM)
+        val name = intent?.data?.getQueryParameter(UriManager.RECIPE_PARAM)
 
         if (!name.isNullOrEmpty()) {
-            FirestoreManager.getRecipeByName(name) { query, exception ->
-                if (exception == null) {
-                    val doc = query?.documents?.firstOrNull()
-                    val recipe = doc?.data?.toRecipe(doc.id) ?: return@getRecipeByName
+            FirestoreManager.getRecipeById(name) { task ->
+                if (task.isSuccessful) {
+                    val doc = task.result
+                    val recipe = doc?.data?.toRecipe(doc.id) ?: return@getRecipeById
                     setupRecipe(recipe)
-                } else exception.printStackTrace()
+                } else task.exception?.printStackTrace()
             }
         } else {
             val recipe = intent?.getParcelableExtra<Recipe>(
@@ -48,7 +48,7 @@ class RecipeDetailActivity : AppCompatActivity() {
     }
 
     private fun setupRecipe(recipe: Recipe) {
-        toolbar_layout.title = recipe.name
+        toolbarLayout.title = recipe.name
 
         Glide.with(this)
             .load(recipe.image)

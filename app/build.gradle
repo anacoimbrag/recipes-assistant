@@ -20,9 +20,9 @@ android {
     }
 
     buildTypes {
-        debug {
-            applicationIdSuffix ".dev"
-        }
+//        debug {
+//            applicationIdSuffix ".dev"
+//        }
         release {
             minifyEnabled false
             proguardFiles getDefaultProguardFile('proguard-android-optimize.txt'), 'proguard-rules.pro'
