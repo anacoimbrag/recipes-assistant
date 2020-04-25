@@ -57,4 +57,5 @@
     <string-array name="spoon_brigadeiro">
         <item>brigadeiro</item>
     </string-array>
+    <string name="search">Procurar</string>
 </resources>

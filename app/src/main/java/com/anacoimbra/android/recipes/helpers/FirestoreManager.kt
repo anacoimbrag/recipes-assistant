@@ -1,6 +1,5 @@
 package com.anacoimbra.android.recipes.helpers
 
-import android.util.Log
 import com.google.android.gms.tasks.Task
 import com.google.firebase.firestore.*
 
@@ -25,5 +24,14 @@ object FirestoreManager {
     fun getAllRecipes(listener: (query: QuerySnapshot?, exception: FirebaseFirestoreException?) -> Unit) {
         db.collection(COLLECTION_NAME)
             .addSnapshotListener(MetadataChanges.INCLUDE, listener)
+    }
+
+    fun searchRecipes(
+        query: String?,
+        listener: (query: QuerySnapshot?, exception: FirebaseFirestoreException?) -> Unit
+    ) {
+        db.collection(COLLECTION_NAME)
+            .whereEqualTo("name", query)
+            .addSnapshotListener(listener)
     }
 }

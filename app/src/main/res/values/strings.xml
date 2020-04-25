@@ -20,6 +20,7 @@
     <string name="smoothie">smoothie</string>
     <string name="homemade_ice_cream">homemade ice cream</string>
     <string name="spoon_brigadeiro">spoon brigadeiro</string>
+    <string name="search">Search</string>
 
     <string-array name="nutella_pie">
         <item>pie</item>
