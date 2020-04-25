@@ -10,10 +10,16 @@ import com.anacoimbra.android.recipes.helpers.UriManager
 import com.anacoimbra.android.recipes.model.Recipe
 import com.anacoimbra.android.recipes.model.toRecipe
 import com.bumptech.glide.Glide
+import com.google.firebase.appindexing.Action
+import com.google.firebase.appindexing.FirebaseAppIndex
+import com.google.firebase.appindexing.FirebaseUserActions
 import kotlinx.android.synthetic.main.activity_recipe_detail.*
 import kotlinx.android.synthetic.main.content_recipe_detail.*
 
+
 class RecipeDetailActivity : AppCompatActivity() {
+
+    private lateinit var recipeView: Action
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -28,6 +34,12 @@ class RecipeDetailActivity : AppCompatActivity() {
         handleIntent(intent)
     }
 
+    override fun onStop() {
+        if (::recipeView.isInitialized)
+            FirebaseUserActions.getInstance().end(recipeView)
+        super.onStop()
+    }
+
     private fun handleIntent(intent: Intent?) {
         val name = intent?.data?.getQueryParameter(UriManager.RECIPE_PARAM)
 
@@ -37,6 +49,7 @@ class RecipeDetailActivity : AppCompatActivity() {
                     val doc = task.result
                     val recipe = doc?.data?.toRecipe(doc.id) ?: return@getRecipeById
                     setupRecipe(recipe)
+                    indexRecipe(recipe, intent)
                 } else task.exception?.printStackTrace()
             }
         } else {
@@ -44,6 +57,7 @@ class RecipeDetailActivity : AppCompatActivity() {
                 UriManager.RECIPE_PARAM
             ) ?: return
             setupRecipe(recipe)
+            indexRecipe(recipe, intent)
         }
     }
 
@@ -59,6 +73,17 @@ class RecipeDetailActivity : AppCompatActivity() {
         recipeDirections.text = recipe.directions
     }
 
+    private fun indexRecipe(recipe: Recipe?, intent: Intent?) {
+        val indexable = recipe?.toIndexable(this) ?: return
+        FirebaseAppIndex.getInstance().update(indexable)
+        recipeView = Action.Builder(Action.Builder.VIEW_ACTION)
+            .setName(recipe.name.orEmpty())
+            .setObject(recipe.name.orEmpty(), recipe.getUrl())
+            .setMetadata(Action.Metadata.Builder().setUpload(false))
+            .build()
+        FirebaseUserActions.getInstance().start(recipeView)
+    }
+
     companion object {
         fun intent(context: Context?, recipe: Recipe?) =
             Intent(context, RecipeDetailActivity::class.java).apply {
@@ -67,11 +92,6 @@ class RecipeDetailActivity : AppCompatActivity() {
             }
 
         fun start(context: Context, recipe: Recipe?) =
-            context.startActivity(
-                intent(
-                    context,
-                    recipe
-                )
-            )
+            context.startActivity(intent(context, recipe))
     }
 }

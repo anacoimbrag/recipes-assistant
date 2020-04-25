@@ -12,6 +12,18 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
+        <receiver
+            android:name=".app.AppIndexingUpdateReceiver"
+            android:exported="true"
+            android:permission="com.google.android.gms.permission.APPINDEXING">
+            <intent-filter>
+                <action android:name="com.google.firebase.appindexing.UPDATE_INDEX" />
+            </intent-filter>
+        </receiver>
+
+        <service
+            android:name=".app.AppIndexingIntentService"
+            android:permission="android.permission.BIND_JOB_SERVICE" />
 
         <provider
             android:name=".app.RecipeSliceProvider"
@@ -27,7 +39,9 @@
                     android:pathPattern="/detail"
                     android:scheme="content" />
             </intent-filter>
-            <intent-filter>
+            <intent-filter
+                android:autoVerify="true"
+                android:label="@string/app_name">
                 <action android:name="android.intent.action.VIEW" />
 
                 <category android:name="android.app.slice.category.SLICE" />
